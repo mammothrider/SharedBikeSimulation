@@ -8,3 +8,25 @@
 #如果大于之前成本，则返回之前成本
 #所有车站根据注册点计算最佳位置，向最佳位置移动
 
+userPosition = [[0, 0]]
+
+def loadUserPosition():
+	pass
+	
+def minimumCostPosition(userList):
+	if (!userList)
+		return null;
+	x, y = zip(*(userList))
+	x, y = sum(x)/len(x), sum(y)/len(y)
+	return [x, y]
+	
+def _utestminimumCostPosition():
+	a = [[1, 1], [2, 2], [3, 3], [-1, -1], [-2, -2], [-3, -3]]
+	print(minimumCostPosition(a))
+	
+	
+if __name__ == '__main__':
+	_utestminimumCostPosition()
+	
+
+	
