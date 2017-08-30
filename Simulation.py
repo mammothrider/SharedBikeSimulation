@@ -13,6 +13,7 @@ b = 0.1
 c = 1
 S = 1
 R = 1
+F = 1
 
 
 userPosition = [[0, 0]]
@@ -44,7 +45,18 @@ def distance(p1, p2):
 	
 def _utestDistance():
 	print(distance([-1, -1], [2, 2]))
-
+    
+def forceBaseStation(muList):
+    minDis = 10000
+    minNum = 0
+    for i in range(len(muList)):
+        tmpDis = distance(muList[i], (0, 0))
+        if tmpDis < minDis:
+            minDis = tmpDis
+            minNum = i
+    
+    muList[minDis] = [0, 0]
+    
 def splitGroup(group, massCenter):
 	if not group:
 		return null
@@ -128,7 +140,10 @@ def StationCalculation(userList):
 		#step 2
 		massCenterList = [massCenter(g) for g in group]
 	
-		#step 3
+        #step 3
+        forceBaseStation(massCenterList)
+    
+		#step 4
 		muList = []
 		for i in range(len(group)):
 			sg = splitGroup(group[i], massCenterList[i])
@@ -139,9 +154,7 @@ def StationCalculation(userList):
 				i -= 1
 				muList += sg
 				
-		# where is the base point!???
-				
-		#step 4
+		#step 5
 		for i in range(len(group)):
 			for j in range(len(group)):
 				if i is not j:
@@ -162,10 +175,10 @@ def StationCalculation(userList):
 		
 		muList += massCenterList
 		
-		#step 5
+		#step 6
 		group = buildGroup(userList, muList)
 		
-		#step 6
+		#step 7
 		if len(lastMuList) != len(muList):
 			continue
 		
